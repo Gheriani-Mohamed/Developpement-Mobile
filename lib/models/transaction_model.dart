@@ -4,6 +4,8 @@ class Transaction {
   final String category;
   final DateTime date;
   final String note;
+  final String type; // "expense" or "income"
 
-  Transaction({required this.id, required this.amount, required this.category, required this.date, required this.note});
+
+  Transaction({required this.id, required this.amount, required this.category, required this.date, required this.note, required this.type,});
 }

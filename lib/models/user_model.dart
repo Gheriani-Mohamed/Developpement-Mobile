@@ -1,5 +1,5 @@
 class UserModel {
-  final String id;
+  final String id;  //TODO Firebase UID IF YOU WANT "Sirine"
   final String name;
   final String email;
 
