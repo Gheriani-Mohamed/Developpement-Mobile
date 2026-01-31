@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:smart_expense_wallet/views/auth/login.dart';
 
-class HelloScreen extends StatelessWidget {
-  const HelloScreen({super.key});
+class WelcomeScreen extends StatelessWidget {
+  const WelcomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,10 +12,7 @@ class HelloScreen extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [
-              const Color(0xFF76A82F),
-              const Color(0xFF5C8424),
-            ],
+            colors: [const Color(0xFF76A82F), const Color(0xFF5C8424)],
           ),
         ),
         child: SafeArea(
@@ -45,10 +43,7 @@ class HelloScreen extends StatelessWidget {
                 const Text(
                   'Manage Your Finances Smartly so in the end you can say \n العام صابة',
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.white70,
-                  ),
+                  style: TextStyle(fontSize: 16, color: Colors.white70),
                 ),
                 const SizedBox(height: 60),
 
@@ -56,7 +51,12 @@ class HelloScreen extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     // Navigate to wallet list or auth screen
-                    Navigator.pushReplacementNamed(context, '/Auth');
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LoginScreen(),
+                      ),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
@@ -71,10 +71,7 @@ class HelloScreen extends StatelessWidget {
                   ),
                   child: const Text(
                     'Get Started',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                   ),
                 ),
               ],
