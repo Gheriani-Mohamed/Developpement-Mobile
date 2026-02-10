@@ -3,7 +3,7 @@ import 'package:lucide_icons/lucide_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_expense_wallet/theme/app_theme.dart';
 import 'package:smart_expense_wallet/theme/theme_provider.dart';
-import 'package:smart_expense_wallet/views/profile/profile_screen.dart';
+import 'package:smart_expense_wallet/screens/profile/profile_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

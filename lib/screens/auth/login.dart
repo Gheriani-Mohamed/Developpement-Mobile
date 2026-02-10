@@ -6,9 +6,9 @@ import 'package:smart_expense_wallet/components/CustomButton.dart';
 import 'package:smart_expense_wallet/components/custom_text_field.dart';
 import 'package:smart_expense_wallet/components/social_button.dart';
 import 'package:smart_expense_wallet/theme/theme_provider.dart';
-import 'package:smart_expense_wallet/views/auth/signup.dart';
+import 'package:smart_expense_wallet/screens/auth/signup.dart';
 import 'package:smart_expense_wallet/services/auth_service.dart';
-import 'package:smart_expense_wallet/views/home/home.dart';
+import 'package:smart_expense_wallet/screens/home/home.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

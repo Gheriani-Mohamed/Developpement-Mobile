@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_expense_wallet/theme/app_theme.dart';
 import 'package:smart_expense_wallet/theme/theme_provider.dart';
-import 'package:smart_expense_wallet/views/splash/splashScreen.dart';
+import 'package:smart_expense_wallet/screens/splash/splashScreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

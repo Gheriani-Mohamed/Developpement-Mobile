@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
-import 'package:smart_expense_wallet/views/welcome/welcomeScreen.dart';
+import 'package:smart_expense_wallet/screens/welcome/welcomeScreen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

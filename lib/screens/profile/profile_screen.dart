@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:smart_expense_wallet/services/auth_service.dart';
 import 'package:smart_expense_wallet/theme/app_theme.dart';
-import 'package:smart_expense_wallet/views/auth/login.dart';
+import 'package:smart_expense_wallet/screens/auth/login.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});

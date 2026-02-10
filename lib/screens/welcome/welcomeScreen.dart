@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_expense_wallet/views/auth/login.dart';
+import 'package:smart_expense_wallet/screens/auth/login.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
