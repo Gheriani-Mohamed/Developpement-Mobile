@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:smart_expense_wallet/services/auth_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:smart_expense_wallet/theme/app_theme.dart';
 import 'package:smart_expense_wallet/screens/auth/login.dart';
 
@@ -30,6 +31,10 @@ class ProfileScreen extends StatelessWidget {
   }
 
   Widget _buildHeader(ThemeData theme, Color textColor) {
+    final user = FirebaseAuth.instance.currentUser;
+    final displayName = user?.displayName ?? 'User';
+    final email = user?.email ?? 'No Email';
+
     return Column(
       children: [
         Stack(
@@ -72,7 +77,7 @@ class ProfileScreen extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         Text(
-          'John Doe',
+          displayName,
           style: TextStyle(
             color: textColor,
             fontSize: 24,
@@ -81,7 +86,7 @@ class ProfileScreen extends StatelessWidget {
         ),
         const SizedBox(height: 4),
         Text(
-          'john.doe@example.com',
+          email,
           style: TextStyle(color: textColor.withOpacity(0.6), fontSize: 16),
         ),
       ],

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_expense_wallet/components/CustomButton.dart';
 import 'package:smart_expense_wallet/components/custom_text_field.dart';
-import 'package:smart_expense_wallet/components/social_button.dart';
 import 'package:smart_expense_wallet/theme/theme_provider.dart';
+import 'package:smart_expense_wallet/screens/auth/forgot_password.dart';
 import 'package:smart_expense_wallet/screens/auth/signup.dart';
 import 'package:smart_expense_wallet/services/auth_service.dart';
 import 'package:smart_expense_wallet/screens/home/home.dart';
@@ -28,20 +27,14 @@ class _LoginScreenState extends State<LoginScreen> {
     if (_formKey.currentState!.validate()) {
       setState(() => _isLoading = true);
 
-      final success = await _authService.login(
+      final user = await _authService.login(
         _emailController.text.trim(),
         _passwordController.text.trim(),
       );
 
       if (mounted) {
         setState(() => _isLoading = false);
-        if (success) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Logged in successfully'),
-              backgroundColor: Colors.green,
-            ),
-          );
+        if (user != null) {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => const HomeScreen()),
           );
@@ -141,7 +134,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 const SizedBox(height: 48),
-
                 // Form Fields
                 CustomTextInput(
                   controller: _emailController,
@@ -165,12 +157,18 @@ class _LoginScreenState extends State<LoginScreen> {
                     return null;
                   },
                 ),
-
                 // Forgot Password
                 Align(
                   alignment: Alignment.centerRight,
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ForgotPasswordScreen(),
+                        ),
+                      );
+                    },
                     child: Text(
                       'Forgot Password?',
                       style: TextStyle(
@@ -181,56 +179,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 const SizedBox(height: 24),
-
                 // Sign In Button
                 CustomButton(
                   text: 'Sign In',
                   onTap: _handleLogin,
                   isLoading: _isLoading,
                 ),
-
                 const SizedBox(height: 32),
-
-                // Divider
-                Row(
-                  children: [
-                    Expanded(child: Divider(color: Colors.grey.shade200)),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Text(
-                        'Or continue with',
-                        style: TextStyle(color: Colors.grey.shade500),
-                      ),
-                    ),
-                    Expanded(child: Divider(color: Colors.grey.shade200)),
-                  ],
-                ),
-
-                const SizedBox(height: 32),
-
-                // Social Buttons
-                Row(
-                  children: [
-                    Expanded(
-                      child: SocialButton(
-                        icon: FontAwesomeIcons.google,
-                        label: 'Google',
-                        onTap: () {},
-                      ),
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: SocialButton(
-                        icon: FontAwesomeIcons.facebookF,
-                        label: 'Facebook',
-                        onTap: () {},
-                      ),
-                    ),
-                  ],
-                ),
-
-                const SizedBox(height: 48),
-
                 // Sign Up Link
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

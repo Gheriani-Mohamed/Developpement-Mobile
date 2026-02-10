@@ -3,6 +3,7 @@ import 'package:lucide_icons/lucide_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_expense_wallet/components/CustomButton.dart';
 import 'package:smart_expense_wallet/components/custom_text_field.dart';
+import 'package:smart_expense_wallet/services/auth_service.dart';
 import 'package:smart_expense_wallet/theme/theme_provider.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -20,6 +21,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
   bool _isLoading = false;
   bool _acceptedTerms = false;
+  final AuthService _authService = AuthService();
 
   Future<void> _handleSignup() async {
     if (_formKey.currentState!.validate()) {
@@ -33,15 +35,31 @@ class _SignupScreenState extends State<SignupScreen> {
       setState(() => _isLoading = true);
 
       // Simulate network request
-      await Future.delayed(const Duration(seconds: 2));
+      // await Future.delayed(const Duration(seconds: 2));
+
+      final user = await _authService.register(
+        _emailController.text.trim(),
+        _passwordController.text.trim(),
+        _nameController.text.trim(),
+      );
 
       if (mounted) {
         setState(() => _isLoading = false);
-        // Navigate or show success
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Account created successfully!')),
-        );
-        Navigator.pop(context); // Go back to login
+        
+        if (user != null) {
+          // Navigate or show success
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Account created successfully!')),
+          );
+          Navigator.pop(context); // Go back to login
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Registration failed. Please try again.'),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
       }
     }
   }

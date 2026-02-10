@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:smart_expense_wallet/theme/app_theme.dart';
 import 'package:smart_expense_wallet/theme/theme_provider.dart';
 import 'package:smart_expense_wallet/screens/profile/profile_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -111,6 +112,9 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildHeader(BuildContext context, Color textColor) {
+    final user = FirebaseAuth.instance.currentUser;
+    final displayName = user?.displayName ?? 'User';
+    
     return Row(
       children: [
         const CircleAvatar(
@@ -129,7 +133,7 @@ class _HomeScreenState extends State<HomeScreen> {
               style: TextStyle(color: Colors.grey, fontSize: 14),
             ),
             Text(
-              'John Doe',
+              displayName,
               style: TextStyle(
                 color: textColor,
                 fontSize: 18,

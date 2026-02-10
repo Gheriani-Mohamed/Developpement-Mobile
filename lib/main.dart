@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-// import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_expense_wallet/theme/app_theme.dart';
 import 'package:smart_expense_wallet/theme/theme_provider.dart';
 import 'package:smart_expense_wallet/screens/splash/splashScreen.dart';
+import 'package:smart_expense_wallet/firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(
     ChangeNotifierProvider(
       create: (_) => ThemeProvider(),
