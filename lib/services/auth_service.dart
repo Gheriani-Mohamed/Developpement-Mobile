@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   Stream<User?> get authStateChanges => _auth.authStateChanges();
 
@@ -15,13 +17,19 @@ class AuthService {
       User? user = result.user;
       if (user != null) {
         await user.updateDisplayName(name);
-        await user.reload();
-        user = _auth.currentUser;
+        
+        // Use the user.uid directly from the result
+        await _firestore.collection('users').doc(user.uid).set({
+          'userId': user.uid,
+          'name': name,
+          'email': email,
+          'createdAt': FieldValue.serverTimestamp(),
+        });
       }
 
       return user;
     } catch (e) {
-      print(e.toString());
+      print("Registration Error: $e");
       return null;
     }
   }
